@@ -1,5 +1,5 @@
 ---
-name: "terraform-plan-pr"
+name: "terraform-apply-main"
 
 "on":
   pull_request:
