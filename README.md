@@ -15,7 +15,9 @@ GHA_PRINCIPALSET="principalSet://iam.googleapis.com/projects/643615470006/locati
 ## Enable required services
 
 ```
-gcloud services enable iam.googleapis.com
+gcloud services enable \
+  cloudresourcemanager.googleapis.com \
+  iam.googleapis.com
 ```
 
 ## Create a Cloud Storage bucket for tfstate
