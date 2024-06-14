@@ -48,8 +48,8 @@ jobs:
       - name: "Set up Cloud SDK"
         uses: "google-github-actions/setup-gcloud@v2"
 
-      # - name: "Configure Docker"
-      #   run: "gcloud auth configure-docker asia-east1-docker.pkg.dev"
+      - name: "Configure Docker"
+        run: "gcloud auth configure-docker asia-east1-docker.pkg.dev"
 
       - name: "Build Docker image"
         run: |
