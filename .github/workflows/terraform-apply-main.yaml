@@ -29,6 +29,9 @@ jobs:
       id-token: "write"
 
     steps:
+      - name: "Install dependencies"
+        run: "pack"
+
       - name: "Install terraform"
         uses: "hashicorp/setup-terraform@v3"
 
