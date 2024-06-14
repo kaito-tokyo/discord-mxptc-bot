@@ -52,7 +52,7 @@ jobs:
 
       - name: "Build Docker image"
         run: |
-          pack build asia-east1-docker.pkg.dev/discord-mxptc-bot-1-svc-my1a/mxptc-bot/mxptc-bot \
+          pack build asia-east1-docker.pkg.dev/discord-mxptc-bot-1-svc-my1a/mxptc-bot/mxptc-bot:latest \
             --builder gcr.io/buildpacks/builder:latest \
             --publish \
             --cache-image asia-east1-docker.pkg.dev/discord-mxptc-bot-1-svc-my1a/mxptc-bot/mxptc-bot-cache
