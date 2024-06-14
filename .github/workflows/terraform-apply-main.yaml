@@ -32,7 +32,7 @@ jobs:
       - name: "Install dependencies"
         working-directory: "/usr/local"
         run: |
-          curl -fsSL https://github.com/moby/buildkit/releases/download/v0.14.0/buildkit-v0.14.0.linux-amd64.tar.gz | sudo tar -xf -
+          curl -fsSL https://github.com/moby/buildkit/releases/download/v0.14.0/buildkit-v0.14.0.linux-amd64.tar.gz | sudo tar -xzf -
 
       - name: "Install terraform"
         uses: "hashicorp/setup-terraform@v3"
