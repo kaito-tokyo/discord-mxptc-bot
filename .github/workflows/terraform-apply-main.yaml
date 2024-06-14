@@ -29,17 +29,16 @@ jobs:
       id-token: "write"
 
     steps:
+      - name: "Install dependencies"
+        working-directory: "/usr/local"
+        run: |
+          curl -fsSL https://github.com/moby/buildkit/releases/download/v0.14.0/buildkit-v0.14.0.linux-amd64.tar.gz | sudo tar -xf -
+
       - name: "Install terraform"
         uses: "hashicorp/setup-terraform@v3"
 
       - name: "Checkout"
         uses: "actions/checkout@v4"
-
-      - name: "Install dependencies"
-        run: |
-          sudo add-apt-repository ppa:cncf-buildpacks/pack-cli
-          sudo apt-get update
-          sudo apt-get install -y pack-cli
 
       - name: "Authenticate to Google Cloud"
         uses: "google-github-actions/auth@v2"
