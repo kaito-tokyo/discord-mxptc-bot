@@ -49,7 +49,7 @@ jobs:
         uses: "google-github-actions/setup-gcloud@v2"
 
       - name: "Configure Docker"
-        run: "gcloud auth configure-docker asia-east1-docker.pkg.dev"
+        run: "gcloud auth configure-docker"
 
       - name: "Build Docker image"
         run: |
