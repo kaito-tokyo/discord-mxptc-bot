@@ -36,7 +36,10 @@ jobs:
         uses: "actions/checkout@v4"
 
       - name: "Install dependencies"
-        run: "sudo apt-get update && sudo apt-get install -y pack"
+        run: |
+          sudo add-apt-repository ppa:cncf-buildpacks/pack-cli
+          sudo apt-get update
+          sudo apt-get install -y pack-cli
 
       - name: "Authenticate to Google Cloud"
         uses: "google-github-actions/auth@v2"
