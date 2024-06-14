@@ -34,7 +34,7 @@ gcloud iam service-accounts add-iam-policy-binding "$GHA_SERVICE_ACCOUNT_NAME@$P
   --condition=None
 
 gcloud projects add-iam-policy-binding "$PROJECT_ID" \
-  --member="serviceAccount:$CB_SERVICE_ACCOUNT_NAME@$PROJECT_ID.iam.gserviceaccount.com" \
+  --member="serviceAccount:$GHA_SERVICE_ACCOUNT_NAME@$PROJECT_ID.iam.gserviceaccount.com" \
   --role=roles/owner \
   --condition=None
 ```
