@@ -1,11 +1,3 @@
-resource "google_project_service" "artifactregistry" {
-  service = "artifactregistry.googleapis.com"
-}
-
-resource "google_project_service" "serviceusage" {
-  service = "serviceusage.googleapis.com"
-}
-
 resource "google_service_account" "deploy_gha_main" {
   description  = "Service account for deploying the bot"
   account_id   = "${var.namespace_short}-deploy-gha-main"

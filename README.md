@@ -51,3 +51,11 @@ gcloud storage buckets add-iam-policy-binding gs://$TFSTATE_BUCKET_NAME \
   --role=roles/storage.objectUser \
   --condition=None
 ```
+
+## Enable additional services
+
+```
+gcloud services enable \
+  artifactregistry.googleapis.com \
+  serviceusage.googleapis.com
+```
