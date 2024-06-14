@@ -37,4 +37,9 @@ gcloud projects add-iam-policy-binding "$PROJECT_ID" \
   --member="serviceAccount:$GHA_SERVICE_ACCOUNT_NAME@$PROJECT_ID.iam.gserviceaccount.com" \
   --role=roles/owner \
   --condition=None
+
+gcloud storage buckets add-iam-policy-binding gs://$TFSTATE_BUCKET_NAME \
+  --member="serviceAccount:$GHA_SERVICE_ACCOUNT_NAME@$PROJECT_ID.iam.gserviceaccount.com" \
+  --role=roles/storage.objectUser \
+  --condition=None
 ```
