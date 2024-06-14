@@ -2,7 +2,7 @@
 name: "terraform-apply-main"
 
 "on":
-  pull_request:
+  push:
     branches:
       - "main"
 
