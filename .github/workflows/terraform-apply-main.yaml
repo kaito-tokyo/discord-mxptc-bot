@@ -54,7 +54,7 @@ jobs:
 
       - name: "Build Docker image"
         run: |
-          buildkitd &
+          sudo buildkitd &
           buildctl build \
             --frontend dockerfile.v0 \
             --local context=. \
