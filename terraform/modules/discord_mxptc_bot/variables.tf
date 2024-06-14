@@ -13,6 +13,11 @@ variable "region" {
   description = "The region to deploy the bot to"
 }
 
+variable "terraform_apply_gha_main_service_account_email" {
+  type        = string
+  description = "The service account for Terraform apply on GHA"
+}
+
 variable "tfstate_bucket_name" {
   type        = string
   description = "The name of the tfstate bucket"

@@ -1,8 +1,3 @@
-resource "google_service_account" "deploy_gha_main" {
-  description  = "Service account for deploying the bot"
-  account_id   = "${var.namespace_short}-deploy-gha-main"
-}
-
 resource "google_artifact_registry_repository" "main" {
   repository_id = "mxptc-bot"
   location      = var.region
@@ -15,7 +10,7 @@ data "google_iam_policy" "artifact_registry_main" {
   binding {
     role = "roles/artifactregistry.writer"
     members = [
-      "serviceAccount:${google_service_account.deploy_gha_main.email}"
+      "serviceAccount:${var.terraform_apply_gha_main_service_account_email}"
     ]
   }
 }
