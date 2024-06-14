@@ -47,8 +47,11 @@ jobs:
           workload_identity_provider: "projects/643615470006/locations/global/workloadIdentityPools/github-kaito-tokyo/providers/actions-githubusercontent-com"
           service_account: "mpb-terraform-apply-gha-main@discord-mxptc-bot-1-svc-my1a.iam.gserviceaccount.com"
 
-      - name: "Configure Docker"
-        run: "gcloud auth configure-docker asia-east1-docker.pkg.dev"
+      - name: "Set up Cloud SDK"
+        uses: "google-github-actions/setup-gcloud@v2"
+
+      # - name: "Configure Docker"
+      #   run: "gcloud auth configure-docker asia-east1-docker.pkg.dev"
 
       - name: "Build Docker image"
         run: |
