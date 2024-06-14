@@ -29,7 +29,7 @@ jobs:
       id-token: "write"
 
     steps:
-      - name: "Install dependencies"
+      - name: "Install BuildKit"
         working-directory: "/usr/local"
         run: |
           curl -fsSL https://github.com/moby/buildkit/releases/download/v0.14.0/buildkit-v0.14.0.linux-amd64.tar.gz | sudo tar -xzf -
@@ -54,10 +54,14 @@ jobs:
 
       - name: "Build Docker image"
         run: |
-          pack build asia-east1-docker.pkg.dev/discord-mxptc-bot-1-svc-my1a/mxptc-bot/mxptc-bot:latest \
-            --builder gcr.io/buildpacks/builder:latest \
-            --publish \
-            --cache-image asia-east1-docker.pkg.dev/discord-mxptc-bot-1-svc-my1a/mxptc-bot/mxptc-bot-cache
+          buildkitd &
+          buildctl build \
+            --frontend dockerfile.v0 \
+            --local context=. \
+            --local dockerfile=. \
+            --output type=image,name=asia-east1-docker.pkg.dev/discord-mxptc-bot-1-svc-my1a/mxptc-bot/mxptc-bot,push=true \
+            --export-cache type=registry,ref=asia-east1-docker.pkg.dev/discord-mxptc-bot-1-svc-my1a/mxptc-bot/mxptc-bot-cache \
+            --import-cache type=registry,ref=asia-east1-docker.pkg.dev/discord-mxptc-bot-1-svc-my1a/mxptc-bot/mxptc-bot-cache
 
       - name: "Terraform Init"
         run: "terraform init"
