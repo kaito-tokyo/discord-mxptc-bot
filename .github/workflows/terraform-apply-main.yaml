@@ -12,7 +12,6 @@ name: "terraform-apply-main"
 defaults:
   run:
     shell: "bash"
-    working-directory: "terraform/environments/prod"
 
 concurrency:
   group: "${{ github.workflow }}-${{ github.ref }}"
@@ -65,10 +64,13 @@ jobs:
             --import-cache type=registry,ref=asia-east1-docker.pkg.dev/discord-mxptc-bot-1-svc-my1a/mxptc-bot/mxptc-bot-cache
 
       - name: "Terraform Init"
+        working-directory: "terraform/environments/prod"
         run: "terraform init"
 
       - name: "Terraform Plan"
+        working-directory: "terraform/environments/prod"
         run: "terraform plan -input=false -out=tfplan"
 
       - name: "Terraform Apply"
+        working-directory: "terraform/environments/prod"
         run: "terraform apply -input=false -auto-approve tfplan"
