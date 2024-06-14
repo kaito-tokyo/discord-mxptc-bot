@@ -12,6 +12,12 @@ GHA_SERVICE_ACCOUNT_NAME="$NAMESPACE_SHORT-terraform-gha-main"
 GHA_PRINCIPALSET="principalSet://iam.googleapis.com/projects/643615470006/locations/global/workloadIdentityPools/github-kaito-tokyo/attribute.repo_ref_workflow/repo:kaito-tokyo/discord-mxptc-bot:ref:main:workflow:terraform-apply-main"
 ```
 
+## Enable required services
+
+```
+gcloud services enable iam.googleapis.com
+```
+
 ## Create a Cloud Storage bucket for tfstate
 
 ```
