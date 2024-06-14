@@ -1,4 +1,4 @@
-variable "principalset_terraform_gha_pr" {
+variable "principalset_terraform_plan_gha_pr" {
   type        = string
   description = "The principal set for Terraform verification on GHA"
 }
