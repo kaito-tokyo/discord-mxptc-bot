@@ -47,6 +47,13 @@ jobs:
           workload_identity_provider: "projects/643615470006/locations/global/workloadIdentityPools/github-kaito-tokyo/providers/actions-githubusercontent-com"
           service_account: "mpb-terraform-apply-gha-main@discord-mxptc-bot-1-svc-my1a.iam.gserviceaccount.com"
 
+      - name: "Build Docker image"
+        run: |
+          pack build asia-east1-docker.pkg.dev/discord-mxptc-bot-1-svc-my1a/mxptc-bot/mxptc-bot \
+            --builder gcr.io/buildpacks/builder:latest \
+            --publish \
+            --cache-image asia-east1-docker.pkg.dev/discord-mxptc-bot-1-svc-my1a/mxptc-bot/mxptc-bot-cache \
+
       - name: "Terraform Init"
         run: "terraform init"
 
