@@ -1,3 +1,7 @@
+resource "google_project_service" "project" {
+  service = "artifactregistry.googleapis.com"
+}
+
 resource "google_service_account" "deploy_gha_main" {
   description  = "Service account for deploying the bot"
   account_id   = "${var.namespace_short}-deploy-gha-main"
