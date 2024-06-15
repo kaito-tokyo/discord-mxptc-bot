@@ -62,7 +62,7 @@ jobs:
             --frontend dockerfile.v0 \
             --local context=. \
             --local dockerfile=. \
-            --output type=image,name=asia-east1-docker.pkg.dev/discord-mxptc-bot-1-svc-my1a/discord-mxptc-bot/discord-mxptc-bot:latest,push=true \
+            --output type=image,name=${{ vars.RUN_IMAGE }}:${{ github.sha }},push=true \
             --export-cache type=gha \
             --import-cache type=gha
 
@@ -72,7 +72,7 @@ jobs:
 
       - name: "Terraform Plan"
         working-directory: "terraform/environments/prod"
-        run: "terraform plan -input=false -var=run_image=asia-east1-docker.pkg.dev/discord-mxptc-bot-1-svc-my1a/discord-mxptc-bot/discord-mxptc-bot:latest -out=tfplan"
+        run: "terraform plan -input=false -var=run_image=${{ vars.RUN_IMAGE }}:${{ github.sha }} -out=tfplan"
 
       - name: "Terraform Apply"
         working-directory: "terraform/environments/prod"
