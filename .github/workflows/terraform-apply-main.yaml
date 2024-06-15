@@ -58,7 +58,7 @@ jobs:
         run: |
           sudo buildkitd &
           sleep 5
-          ls -l /run/buildkit/buildkitd.sock
+          sudo ls -l /run/buildkit/buildkitd.sock
           buildctl build \
             --frontend dockerfile.v0 \
             --local context=. \
