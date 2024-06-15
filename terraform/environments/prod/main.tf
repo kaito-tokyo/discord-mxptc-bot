@@ -5,4 +5,6 @@ module "discord_mxptc_bot" {
   region                                         = var.region
   terraform_apply_gha_main_service_account_email = var.terraform_apply_gha_main_service_account_email
   tfstate_bucket_name                            = var.tfstate_bucket_name
+
+  run_image = var.run_image
 }

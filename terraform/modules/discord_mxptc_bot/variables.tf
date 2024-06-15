@@ -23,6 +23,11 @@ variable "tfstate_bucket_name" {
   description = "The name of the tfstate bucket"
 }
 
+variable "run_image" {
+  type        = string
+  description = "The image to run the bot with"
+}
+
 variable "namespace_short" {
   type        = string
   description = "The short namespace for the project"

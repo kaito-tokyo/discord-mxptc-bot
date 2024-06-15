@@ -20,3 +20,32 @@ resource "google_artifact_registry_repository_iam_policy" "main" {
   location    = google_artifact_registry_repository.main.location
   policy_data = data.google_iam_policy.artifact_registry_main.policy_data
 }
+
+// Discord bot for the mxptc server
+resource "google_cloud_run_service" "main" {
+  name     = "discord-mxptc-bot"
+  location = var.region
+
+  template {
+    spec {
+      containers {
+        image = var.run_image
+      }
+    }
+  }
+}
+
+data "google_iam_policy" "cloud_run_main" {
+  binding {
+    role = "roles/run.invoker"
+    members = [
+      "allUsers"
+    ]
+  }
+}
+
+resource "google_cloud_run_service_iam_policy" "main" {
+  service     = google_cloud_run_service.main.name
+  location    = google_cloud_run_service.main.location
+  policy_data = data.google_iam_policy.cloud_run_main.policy_data
+}
