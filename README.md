@@ -57,6 +57,7 @@ gcloud storage buckets add-iam-policy-binding gs://$TFSTATE_BUCKET_NAME \
 ```
 gcloud services enable \
   artifactregistry.googleapis.com \
-  serviceusage.googleapis.com \
-  run.googleapis.com
+  run.googleapis.com \
+  secretmanager.googleapis.com \
+  serviceusage.googleapis.com
 ```
