@@ -26,7 +26,7 @@ jobs:
     permissions:
       contents: "read"
       id-token: "write"
-    
+
     environment: "prod"
 
     steps:
@@ -53,7 +53,7 @@ jobs:
 
       - name: "Authenticate Docker"
         run: "gcloud auth configure-docker asia-east1-docker.pkg.dev"
- 
+
       - name: "Expose GitHub Runtime"
         uses: "crazy-max/ghaction-github-runtime@v3"
 

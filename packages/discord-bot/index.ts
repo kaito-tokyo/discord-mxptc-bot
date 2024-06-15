@@ -9,4 +9,4 @@ app.get("/", (_, res) => {
 
 app.listen(port, () => {
   console.log(`Listing on port ${port}`);
-})
+});
