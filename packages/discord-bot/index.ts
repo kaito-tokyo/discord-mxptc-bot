@@ -9,7 +9,7 @@ app.use(express.raw());
 
 app.get("/", async (req, res) => {
   const isValidRequest = await verify(req, req.body);
-  if (isValidRequest) {
+  if (!isValidRequest) {
     res.status(401);
     res.send("Bad sigunature!");
     return;
