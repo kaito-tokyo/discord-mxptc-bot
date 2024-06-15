@@ -9,5 +9,8 @@
   ],
   "devDependencies": {
     "prettier": "^3.3.2"
+  },
+  "dependencies": {
+    "discord-api-types": "^0.37.89"
   }
 }
