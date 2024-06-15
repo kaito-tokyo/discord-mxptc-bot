@@ -7,7 +7,7 @@ import {
 import express from "express";
 
 import { loadDiscordPublicKey } from "./constants.js";
-import { registerGlobalCommands } from "../registerGlobalCommands.js";
+import { registerGlobalCommands } from "./registerGlobalCommands.js";
 
 function isApplicationCommandInteraction(
   message: unknown,

@@ -8,7 +8,7 @@ export const data = new SlashCommandBuilder()
   .setDescription("試合の勝敗を登録します。");
 
 export function execute(
-  interaction: APIApplicationCommandInteraction,
+  _interaction: APIApplicationCommandInteraction,
   res: Response,
 ) {
   res.send({
