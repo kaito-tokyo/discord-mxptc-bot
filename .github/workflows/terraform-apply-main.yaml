@@ -56,6 +56,7 @@ jobs:
  
       - name: "Build Docker image"
         run: |
+          buildkitd --help
           sudo buildkitd &
           sleep 5
           sudo ls -l /run
