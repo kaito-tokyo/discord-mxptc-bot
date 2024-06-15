@@ -65,7 +65,7 @@ jobs:
             --frontend dockerfile.v0 \
             --local context=. \
             --local dockerfile=. \
-            --output type=image,name=asia-east1-docker.pkg.dev/discord-mxptc-bot-1-svc-my1a/mxptc-bot/mxptc-bot:latest,push=true \
+            --output type=image,name=asia-east1-docker.pkg.dev/discord-mxptc-bot-1-svc-my1a/discord-mxptc-bot/discord-mxptc-bot:latest,push=true \
             --export-cache type=gha \
             --import-cache type=gha
 
