@@ -21,7 +21,7 @@ const app = express();
 const port = Number(process.env["PORT"] ?? 3000);
 
 app.post("/", verifyKeyMiddleware(loadDiscordPublicKey()), async (req, res) => {
-  const message: unknown = JSON.parse(req.body.toString());
+  const { body: message } = req;
   if (isApplicationCommandInteraction(message)) {
     if (message.data.name === match.data.name) {
       await match.execute(message, res);
