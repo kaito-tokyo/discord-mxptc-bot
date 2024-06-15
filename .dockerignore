@@ -1,1 +1,8 @@
+.github
+terraform
 packages/**/*.js
+.*
+*
+!package-lock.json
+!package.json
+!tsconfig.json
