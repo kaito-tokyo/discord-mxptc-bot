@@ -1,6 +1,5 @@
 import { APIApplicationCommandInteraction } from "discord-api-types/v10";
 import {
-  InteractionResponseType,
   InteractionType,
   verifyKeyMiddleware,
 } from "discord-interactions";
