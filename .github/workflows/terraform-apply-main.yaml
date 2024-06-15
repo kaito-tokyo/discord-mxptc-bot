@@ -56,7 +56,6 @@ jobs:
  
       - name: "Build Docker image"
         run: |
-          buildkitd --help
           sudo buildkitd --group docker &
           sleep 1
           buildctl build \
@@ -64,8 +63,8 @@ jobs:
             --local context=. \
             --local dockerfile=. \
             --output type=image,name=asia-east1-docker.pkg.dev/discord-mxptc-bot-1-svc-my1a/mxptc-bot/mxptc-bot:latest,push=true \
-            --export-cache type=registry,ref=asia-east1-docker.pkg.dev/discord-mxptc-bot-1-svc-my1a/mxptc-bot/mxptc-bot-cache:latest \
-            --import-cache type=registry,ref=asia-east1-docker.pkg.dev/discord-mxptc-bot-1-svc-my1a/mxptc-bot/mxptc-bot-cache:latest
+            --export-cache type=gha \
+            --import-cache type=gha
 
       - name: "Terraform Init"
         working-directory: "terraform/environments/prod"
