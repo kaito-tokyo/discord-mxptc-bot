@@ -6,3 +6,6 @@ packages/**/*.js
 !package-lock.json
 !package.json
 !tsconfig.json
+!packages/**/*.ts
+!packages/**/*.json
+packages/*/dist
