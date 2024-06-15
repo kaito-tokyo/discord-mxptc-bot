@@ -1,3 +1,4 @@
+import { InteractionResponseType } from "discord-interactions";
 import express from "express";
 
 import { verify } from "./validator.js";
@@ -5,11 +6,7 @@ import { verify } from "./validator.js";
 const app = express();
 const port = Number(process.env["PORT"] ?? 3000);
 
-app.use(express.raw());
-
-app.post("/", async (req, res) => {
-  console.log(req.body);
-  console.log(req.body.toString("utf-8"));
+app.post("/", express.raw(), async (req, res) => {
   const isValidRequest = await verify(req, req.body);
   if (!isValidRequest) {
     res.status(401);
@@ -17,7 +14,12 @@ app.post("/", async (req, res) => {
     return;
   }
 
-  res.send("Hello World!");
+  res.send({
+    type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+    data: {
+      content: "Hello World!"
+    }
+  });
 });
 
 app.listen(port, () => {
