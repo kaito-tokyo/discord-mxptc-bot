@@ -1,5 +1,5 @@
 resource "google_artifact_registry_repository" "main" {
-  repository_id = "mxptc-bot"
+  repository_id = "discord-mxptc-bot"
   location      = var.region
   project       = var.project_id
   format        = "DOCKER"
