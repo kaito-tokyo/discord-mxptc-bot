@@ -71,7 +71,7 @@ resource "google_cloud_run_service" "main" {
         }
         env {
           name  = "DISCORD_BOT_TOKEN_SECRET_ID"
-          value = google_secret_manager_secret.discord_bot_token.id
+          value = "${google_secret_manager_secret.discord_bot_token.id}/versions/latest"
         }
       }
 
