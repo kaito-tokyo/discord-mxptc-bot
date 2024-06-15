@@ -5,9 +5,6 @@ name: "terraform-apply-main"
   push:
     branches:
       - "main"
-    paths:
-      - ".github/workflows/terraform-apply-main.yaml"
-      - "terraform/**"
 
 defaults:
   run:
