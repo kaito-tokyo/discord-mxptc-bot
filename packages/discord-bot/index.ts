@@ -7,9 +7,7 @@ import {
 import express from "express";
 
 import { loadDiscordPublicKey } from "./constants.js";
-
-const app = express();
-const port = Number(process.env["PORT"] ?? 3000);
+import { registerGlobalCommands } from "../registerGlobalCommands.js";
 
 function isApplicationCommandInteraction(
   message: unknown,
@@ -19,6 +17,11 @@ function isApplicationCommandInteraction(
   }
   return message.type === InteractionType.APPLICATION_COMMAND;
 }
+
+registerGlobalCommands();
+
+const app = express();
+const port = Number(process.env["PORT"] ?? 3000);
 
 app.post("/", verifyKeyMiddleware(loadDiscordPublicKey()), async (req, res) => {
   const message: unknown = JSON.parse(req.body.toString());
