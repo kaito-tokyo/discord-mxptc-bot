@@ -48,7 +48,7 @@ data "google_iam_policy" "secret_manager_discord_bot_token" {
 }
 
 resource "google_secret_manager_secret_iam_policy" "discord_bot_token" {
-  secret_id = google_secret_manager_secret.discord_bot_token.secret_id
+  secret_id   = google_secret_manager_secret.discord_bot_token.secret_id
   policy_data = data.google_iam_policy.secret_manager_discord_bot_token.policy_data
 }
 

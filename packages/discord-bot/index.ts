@@ -20,23 +20,19 @@ function isApplicationCommandInteraction(
   return message.type === InteractionType.APPLICATION_COMMAND;
 }
 
-app.post(
-  "/",
-  verifyKeyMiddleware(loadDiscordPublicKey()),
-  async (req, res) => {
-    const message: unknown = JSON.parse(req.body.toString());
-    if (isApplicationCommandInteraction(message)) {
-      if (message.data.name === "ping") {
-        res.send({
-          type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-          data: {
-            content: "Hello World!",
-          },
-        });
-      }
+app.post("/", verifyKeyMiddleware(loadDiscordPublicKey()), async (req, res) => {
+  const message: unknown = JSON.parse(req.body.toString());
+  if (isApplicationCommandInteraction(message)) {
+    if (message.data.name === "ping") {
+      res.send({
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: {
+          content: "Hello World!",
+        },
+      });
     }
-  },
-);
+  }
+});
 
 app.listen(port, () => {
   console.log(`Listing on port ${port}`);

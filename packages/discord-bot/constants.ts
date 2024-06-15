@@ -1,4 +1,4 @@
-import { SecretManagerServiceClient } from '@google-cloud/secret-manager';
+import { SecretManagerServiceClient } from "@google-cloud/secret-manager";
 
 export function loadDiscordApplicationId(): string {
   const discordApplicationId = process.env["DISCORD_APPLICATION_ID"];
@@ -23,7 +23,9 @@ export async function loadDiscordBotToken(): Promise<string> {
   }
 
   const client = new SecretManagerServiceClient();
-  const [response] = await client.accessSecretVersion({ name: discordBotTokenSecretId })
+  const [response] = await client.accessSecretVersion({
+    name: discordBotTokenSecretId,
+  });
   const discordBotToken = response.payload?.data?.toString();
   if (!discordBotToken) {
     throw new Error("Failed to load Discord bot token");
