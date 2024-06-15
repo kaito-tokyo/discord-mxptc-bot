@@ -1,8 +1,5 @@
 import { APIApplicationCommandInteraction } from "discord-api-types/v10";
-import {
-  InteractionType,
-  verifyKeyMiddleware,
-} from "discord-interactions";
+import { InteractionType, verifyKeyMiddleware } from "discord-interactions";
 import express from "express";
 
 import { loadDiscordPublicKey } from "./constants.js";
