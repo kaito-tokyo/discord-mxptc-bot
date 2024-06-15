@@ -13,6 +13,6 @@ export async function registerGlobalCommands() {
 
   const rest = new REST({ version: "v10" }).setToken(discordBotToken);
   await rest.put(Routes.applicationCommands(discordApplicationId), {
-    body: [registerMatch.data],
+    body: [registerMatch.data.toJSON()],
   });
 }
