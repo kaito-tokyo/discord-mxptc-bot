@@ -23,6 +23,16 @@ variable "tfstate_bucket_name" {
   description = "The name of the tfstate bucket"
 }
 
+variable "discord_application_id" {
+  type        = string
+  description = "The Discord application ID"
+}
+
+variable "discord_public_key" {
+  type        = string
+  description = "The Discord public key"
+}
+
 variable "run_image" {
   type        = string
   description = "The image to run the bot with"

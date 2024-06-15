@@ -6,6 +6,8 @@ import {
 } from "discord-interactions";
 import express from "express";
 
+import { loadDiscordPublicKey } from "./constants.js";
+
 const app = express();
 const port = Number(process.env["PORT"] ?? 3000);
 
@@ -20,9 +22,7 @@ function isApplicationCommandInteraction(
 
 app.post(
   "/",
-  verifyKeyMiddleware(
-    "e5bdebe3264718958fdc0fc10f15d124da3e4434b064a0568784db8d617f04ef",
-  ),
+  verifyKeyMiddleware(loadDiscordPublicKey()),
   async (req, res) => {
     const message: unknown = JSON.parse(req.body.toString());
     if (isApplicationCommandInteraction(message)) {

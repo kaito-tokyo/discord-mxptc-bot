@@ -27,6 +27,32 @@ resource "google_service_account" "run" {
 }
 
 // Discord bot for the mxptc server
+resource "google_secret_manager_secret" "discord_bot_token" {
+  secret_id = "${namespace_short}-discord-bot-token"
+  replication {
+    user_managed {
+      replicas {
+        location = var.region
+      }
+    }
+  }
+}
+
+data "google_iam_policy" "secret_manager_discord_bot_token" {
+  binding {
+    role = "roles/secretmanager.secretAccessor"
+    members = [
+      "serviceAccount:${google_service_account.run.email}"
+    ]
+  }
+}
+
+resource "google_secret_manager_secret_iam_policy" "discord_bot_token" {
+  secret_id = google_secret_manager_secret.discord_bot_token.secret_id
+  policy_data = data.google_iam_policy.secret_manager_discord_bot_token.policy_data
+}
+
+// Discord bot for the mxptc server
 resource "google_cloud_run_service" "main" {
   name     = "discord-mxptc-bot"
   location = var.region
@@ -35,6 +61,18 @@ resource "google_cloud_run_service" "main" {
     spec {
       containers {
         image = var.run_image
+        env {
+          name  = "DISCORD_APPLICATION_ID"
+          value = var.discord_application_id
+        }
+        env {
+          name  = "DISCORD_PUBLIC_KEY"
+          value = var.discord_public_key
+        }
+        env {
+          name  = "DISCORD_BOT_TOKEN_SECRET_ID"
+          value = google_secret_manager_secret.discord_bot_token.id
+        }
       }
 
       service_account_name = google_service_account.run.email
