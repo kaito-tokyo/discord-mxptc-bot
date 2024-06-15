@@ -58,8 +58,7 @@ jobs:
         run: |
           buildkitd --help
           sudo buildkitd --group docker &
-          sleep 5
-          sudo ls -l /run
+          sleep 1
           buildctl build \
             --frontend dockerfile.v0 \
             --local context=. \
