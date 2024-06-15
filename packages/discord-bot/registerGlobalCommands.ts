@@ -11,7 +11,7 @@ export async function registerGlobalCommands() {
   const discordApplicationId = loadDiscordApplicationId();
   const discordBotToken = await loadDiscordBotToken();
 
-  const rest = new REST({ version: "v10" }).setToken(discordBotToken);
+  const rest = new REST({ version: "10" }).setToken(discordBotToken);
   await rest.put(Routes.applicationCommands(discordApplicationId), {
     body: [registerMatch.data.toJSON()],
   });
