@@ -4,7 +4,7 @@ import { InteractionResponseType } from "discord-interactions";
 import type { Response } from "express";
 
 export const data = new SlashCommandBuilder()
-  .setName("勝敗登録")
+  .setName("match")
   .setDescription("試合の勝敗を登録します。");
 
 export function execute(
