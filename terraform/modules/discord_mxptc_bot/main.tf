@@ -22,8 +22,8 @@ resource "google_artifact_registry_repository_iam_policy" "main" {
 }
 
 resource "google_service_account" "run" {
-  description  = "Service account for the Cloud Run service"
-  account_id   = "${var.namespace_short}-run"
+  description = "Service account for the Cloud Run service"
+  account_id  = "${var.namespace_short}-run"
 }
 
 // Discord bot for the mxptc server
