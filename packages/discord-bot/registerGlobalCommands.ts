@@ -1,8 +1,5 @@
 import { REST } from "@discordjs/rest";
-import {
-  loadDiscordApplicationId,
-  loadDiscordBotToken,
-} from "./constants.js";
+import { loadDiscordApplicationId, loadDiscordBotToken } from "./constants.js";
 import { Routes } from "discord-api-types/v10";
 
 import * as registerMatch from "./commands/registerMatch.js";
