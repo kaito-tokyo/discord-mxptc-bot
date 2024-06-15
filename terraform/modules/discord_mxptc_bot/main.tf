@@ -28,7 +28,7 @@ resource "google_service_account" "run" {
 
 // Discord bot for the mxptc server
 resource "google_secret_manager_secret" "discord_bot_token" {
-  secret_id = "${namespace_short}-discord-bot-token"
+  secret_id = "${var.namespace_short}-discord-bot-token"
   replication {
     user_managed {
       replicas {
