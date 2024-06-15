@@ -45,4 +45,4 @@ jobs:
         run: "terraform init"
 
       - name: "Terraform Plan"
-        run: "terraform plan -input=false -lock=false"
+        run: "terraform plan -input=false -lock=false -var=run_image=asia-east1-docker.pkg.dev/discord-mxptc-bot-1-svc-my1a/discord-mxptc-bot/discord-mxptc-bot:latest"
