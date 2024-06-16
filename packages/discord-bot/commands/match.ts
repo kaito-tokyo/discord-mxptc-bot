@@ -175,7 +175,7 @@ export function execute(
   res.send({
     type: InteractionResponseType.ChannelMessageWithSource,
     data: {
-      content: `登録完了 勝利デッキ：${winDecks.join(",")} 敗北デッキ：${loseDecks.join(",")} 勝利プレイヤー：${winPlayers.join(",")} 敗北プレイヤー：${losePlayers.join(",")}`,
+      content: `登録完了 対戦ID：${createdAt} 勝利デッキ：${winDecks.join(",")} 敗北デッキ：${loseDecks.join(",")} 勝利プレイヤー：${winPlayers.join(",")} 敗北プレイヤー：${losePlayers.join(",")}`,
     },
   });
 }
