@@ -22,7 +22,7 @@ resource "google_bigquery_table" "matches" {
   schema = jsonencode([
     {
       name = "createdAt"
-      type = "DATETIME"
+      type = "TIMESTAMP"
     },
     {
       name = "firstDeck"
