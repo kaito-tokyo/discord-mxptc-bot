@@ -11,7 +11,6 @@ import type { Response } from "express";
 import { Firestore } from "@google-cloud/firestore";
 import { Storage } from "@google-cloud/storage";
 
-
 import {
   MyApplicationCommandAutocompleteInteractionDataOption,
   MyApplicationCommandInteractionDataOption,
@@ -104,7 +103,10 @@ export function execute(
   const filename = `${createdAt}.json`;
 
   const storage = new Storage();
-  storage.bucket(loadMatchesBucketName()).file(filename).save(JSON.stringify(match));
+  storage
+    .bucket(loadMatchesBucketName())
+    .file(filename)
+    .save(JSON.stringify(match));
 
   res.send({
     type: InteractionResponseType.ChannelMessageWithSource,
