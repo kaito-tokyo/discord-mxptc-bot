@@ -5,9 +5,9 @@ resource "google_bigquery_connection" "main" {
 }
 
 resource "google_storage_bucket_iam_member" "bigquery_connection_matches_viewer" {
-  bucket  = google_storage_bucket.matches.name
-  role    = "roles/storage.objectViewer"
-  member  = "serviceAccount:${google_bigquery_connection.main.cloud_resource[0].service_account_id}"
+  bucket = google_storage_bucket.matches.name
+  role   = "roles/storage.objectViewer"
+  member = "serviceAccount:${google_bigquery_connection.main.cloud_resource[0].service_account_id}"
 }
 
 resource "google_bigquery_dataset" "main" {
