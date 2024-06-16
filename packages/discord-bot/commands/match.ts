@@ -76,10 +76,6 @@ export const data = new SlashCommandBuilder()
       .setAutocomplete(true),
   );
 
-function compact(array: (string | undefined)[]): string[] {
-  return array.flatMap((e) => (e == null ? [] : [e]));
-}
-
 export function execute(
   interaction: APIChatInputApplicationCommandInteraction,
   res: Response,
