@@ -105,6 +105,6 @@ resource "google_firestore_database" "main" {
 // Firestore database for the mxptc server
 resource "google_project_iam_member" "run_firestore_viewer" {
   project = var.project_id
-  role    = "roles/datastore.user.viewer"
+  role    = "roles/datastore.viewer"
   member  = "serviceAccount:${google_service_account.run.email}"
 }
