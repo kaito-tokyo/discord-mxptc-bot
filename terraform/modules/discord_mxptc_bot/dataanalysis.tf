@@ -16,9 +16,10 @@ resource "google_bigquery_dataset" "main" {
 }
 
 resource "google_bigquery_table" "matches" {
-  description = "Matches between decks"
-  dataset_id  = google_bigquery_dataset.main.dataset_id
-  table_id    = "matches"
+  description         = "Matches between decks"
+  deletion_protection = false
+  dataset_id          = google_bigquery_dataset.main.dataset_id
+  table_id            = "matches"
   schema = jsonencode([
     {
       name = "createdAt"
@@ -35,6 +36,36 @@ resource "google_bigquery_table" "matches" {
     {
       name = "winner"
       type = "STRING"
+    },
+    {
+      name = "firstPlayer"
+      type = "STRING"
+      mode = "NULLABLE"
+    },
+    {
+      name = "secondPlayer"
+      type = "STRING"
+      mode = "NULLABLE"
+    },
+    {
+      name = "winDecks"
+      type = "STRING"
+      mode = "REPEATED"
+    },
+    {
+      name = "loseDecks"
+      type = "STRING"
+      mode = "REPEATED"
+    },
+    {
+      name = "winPlayers"
+      type = "STRING"
+      mode = "REPEATED"
+    },
+    {
+      name = "losePlayers"
+      type = "STRING"
+      mode = "REPEATED"
     },
   ])
   external_data_configuration {

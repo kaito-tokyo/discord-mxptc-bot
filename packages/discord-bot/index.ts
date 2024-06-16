@@ -39,8 +39,7 @@ app.post("/", verifyKeyMiddleware(loadDiscordPublicKey()), async (req, res) => {
     if (message.data.name === match.data.name) {
       await match.execute(message, res);
     }
-  }
-  if (isApplicationCommandAutocompleteInteraction(message)) {
+  } else if (isApplicationCommandAutocompleteInteraction(message)) {
     if (message.data.name === match.data.name) {
       await match.autocomplete(message, res);
     }
