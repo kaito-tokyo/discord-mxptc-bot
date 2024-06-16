@@ -101,3 +101,15 @@ resource "google_firestore_database" "main" {
   location_id = "asia-east1"
   type        = "FIRESTORE_NATIVE"
 }
+
+resource "google_firestore_field" "main_decktypes_name" {
+  database   = google_firestore_database.main.name
+  collection = "decktypes"
+  field      = "name"
+}
+
+resource "google_firestore_field" "main_decktypes_value" {
+  database   = google_firestore_database.main.name
+  collection = "decktypes"
+  field      = "value"
+}
