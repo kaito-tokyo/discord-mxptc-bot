@@ -24,9 +24,10 @@ export const data = new SlashCommandBuilder()
   );
 
 export function execute(
-  _interaction: APIApplicationCommandInteraction,
+  interaction: APIApplicationCommandInteraction,
   res: Response,
 ) {
+  console.log(interaction);
   res.send({
     type: InteractionResponseType.ChannelMessageWithSource,
     data: {
