@@ -103,9 +103,9 @@ export function execute(
       secondDeck = value;
     } else if (name === winnerOptionName && typeof value === "string") {
       winner = value;
-    } else if (name === firstPlayer && typeof value === "string") {
+    } else if (name === firstPlayerOptionName && typeof value === "string") {
       firstPlayer = value;
-    } else if (name === secondPlayer && typeof value === "string") {
+    } else if (name === secondPlayerOptionName && typeof value === "string") {
       secondPlayer = value;
     }
   }
