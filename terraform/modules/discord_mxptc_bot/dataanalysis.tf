@@ -1,4 +1,5 @@
 resource "google_bigquery_connection" "main" {
+  project    = var.project_id
   connection_id = "main"
   cloud_resource {}
 }
