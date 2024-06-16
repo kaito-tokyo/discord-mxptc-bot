@@ -26,6 +26,21 @@ resource "google_service_account" "run" {
   account_id  = "${var.namespace_short}-run"
 }
 
+// Storage bucket for match records
+resource "google_storage_bucket" "matches" {
+  name                        = "matches-${var.project_id}"
+  location                    = var.region
+  uniform_bucket_level_access = true
+  public_access_prevention    = "enforced"
+}
+
+// Grant the bot to access the match record bucket
+resource "google_storage_bucket_iam_member" "run_matches" {
+  bucket = google_storage_bucket.matches.name
+  role   = "roles/storage.objectUser"
+  member = "serviceAccount:${google_service_account.run.email}"
+}
+
 // Discord bot for the mxptc server
 resource "google_secret_manager_secret" "discord_bot_token" {
   secret_id = "${var.namespace_short}-discord-bot-token"
@@ -72,6 +87,10 @@ resource "google_cloud_run_service" "main" {
         env {
           name  = "DISCORD_BOT_TOKEN_SECRET_ID"
           value = "${google_secret_manager_secret.discord_bot_token.id}/versions/latest"
+        }
+        env {
+          name  = "MATCHES_BUCKET_NAME"
+          value = google_storage_bucket.matches.name
         }
       }
 
