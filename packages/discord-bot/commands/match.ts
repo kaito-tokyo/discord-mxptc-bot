@@ -16,21 +16,21 @@ export function execute(
   _interaction: APIApplicationCommandInteraction,
   res: Response,
 ) {
-  const firstDeck = new StringSelectMenuBuilder()
-    .setCustomId("first_deck")
-    .setPlaceholder("先攻デッキ")
-    .addOptions(
-      new StringSelectMenuOptionBuilder()
-        .setLabel("リザードンex")
-        .setDescription("悪リザードンexを主軸としたデッキ")
-        .setValue("charizard-ex"),
-      new StringSelectMenuOptionBuilder()
-        .setLabel("ハバタクカミサーフゴー")
-        .setDescription("ハバタクカミとサーフゴーexを主軸としてデッキ")
-        .setValue("flutter-mane-gholdengo-ex"),
-    );
+  // const firstDeck = new StringSelectMenuBuilder()
+  //   .setCustomId("first_deck")
+  //   .setPlaceholder("先攻デッキ")
+  //   .addOptions(
+  //     new StringSelectMenuOptionBuilder()
+  //       .setLabel("リザードンex")
+  //       .setDescription("悪リザードンexを主軸としたデッキ")
+  //       .setValue("charizard-ex"),
+  //     new StringSelectMenuOptionBuilder()
+  //       .setLabel("ハバタクカミサーフゴー")
+  //       .setDescription("ハバタクカミとサーフゴーexを主軸としてデッキ")
+  //       .setValue("flutter-mane-gholdengo-ex"),
+  //   );
 
-  const deckRow = new ActionRowBuilder().addComponents(firstDeck);
+  // const deckRow = new ActionRowBuilder().addComponents(firstDeck);
 
   res.send({
     type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
