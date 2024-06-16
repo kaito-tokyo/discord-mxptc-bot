@@ -14,12 +14,14 @@ export const data = new SlashCommandBuilder()
     option
       .setName("first-deck")
       .setDescription("先攻のデッキタイプ")
+      .setRequired(true)
       .setAutocomplete(true),
   )
   .addStringOption((option) =>
     option
       .setName("second-deck")
       .setDescription("後攻のデッキタイプ")
+      .setRequired(true)
       .setAutocomplete(true),
   );
 
