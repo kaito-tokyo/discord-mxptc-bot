@@ -20,17 +20,6 @@ const firstDeckOptionName = "first-deck";
 const secondDeckOptionName = "second-deck";
 const winnerOptionName = "winner";
 
-const choices = [
-  {
-    name: "リザードンex",
-    value: "charizard-ex",
-  },
-  {
-    name: "ハバタクカミサーフゴーex",
-    value: "flutter-mane-gholdengo-ex",
-  },
-];
-
 export const data = new SlashCommandBuilder()
   .setName(commandName)
   .setDescription("試合の勝敗を登録します。")
