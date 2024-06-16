@@ -34,4 +34,12 @@ export async function loadDiscordBotToken(): Promise<string> {
   return discordBotToken;
 }
 
+export function loadMatchesBucketName(): string {
+  const matchesBucketName = process.env["MATCHES_BUCKET_NAME"];
+  if (!matchesBucketName) {
+    throw new Error("MATCHES_BUCKET_NAME is not set");
+  }
+  return matchesBucketName;
+}
+
 export const firestoreDatabaseId = "mpb-main";

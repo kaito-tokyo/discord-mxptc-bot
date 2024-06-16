@@ -9,12 +9,14 @@ import {
 import type { Response } from "express";
 
 import { Firestore } from "@google-cloud/firestore";
+import { Storage } from "@google-cloud/storage";
+
 
 import {
   MyApplicationCommandAutocompleteInteractionDataOption,
   MyApplicationCommandInteractionDataOption,
 } from "../types.js";
-import { firestoreDatabaseId } from "../constants.js";
+import { firestoreDatabaseId, loadMatchesBucketName } from "../constants.js";
 
 const commandName = "match";
 const firstDeckOptionName = "first-deck";
@@ -91,6 +93,18 @@ export function execute(
   if (winner == null) {
     throw new Error("winner is null!");
   }
+
+  const createdAt = new Date().toISOString();
+  const match = {
+    createdAt,
+    firstDeck,
+    secondDeck,
+    winner,
+  };
+  const filename = `${createdAt}.json`;
+
+  const storage = new Storage();
+  storage.bucket(loadMatchesBucketName()).file(filename).save(JSON.stringify(match));
 
   res.send({
     type: InteractionResponseType.ChannelMessageWithSource,
