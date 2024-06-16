@@ -1,4 +1,4 @@
-import { APIApplicationCommandInteraction } from "discord-api-types/v10";
+import { APIApplicationCommandAutocompleteInteraction, APIApplicationCommandInteraction } from "discord-api-types/v10";
 import { InteractionType, verifyKeyMiddleware } from "discord-interactions";
 import express from "express";
 
@@ -15,6 +15,13 @@ function isApplicationCommandInteraction(
   return message.type === InteractionType.APPLICATION_COMMAND;
 }
 
+function isApplicationCommandAutocompleteInteraction(message: unknown): message is APIApplicationCommandAutocompleteInteraction {
+  if (!message || typeof message !== "object" || !("type" in message)) {
+    return false;
+  }
+  return message.type === InteractionType.APPLICATION_COMMAND_AUTOCOMPLETE;
+}
+
 registerGlobalCommands();
 
 const app = express();
@@ -25,6 +32,11 @@ app.post("/", verifyKeyMiddleware(loadDiscordPublicKey()), async (req, res) => {
   if (isApplicationCommandInteraction(message)) {
     if (message.data.name === match.data.name) {
       await match.execute(message, res);
+    }
+  }
+  if (isApplicationCommandAutocompleteInteraction(message)) {
+    if (message.data.name === match.data.name) {
+      await match.autocomplete(message, res);
     }
   }
 });

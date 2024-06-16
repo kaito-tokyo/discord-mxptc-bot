@@ -1,54 +1,39 @@
-import {
-  ActionRowBuilder,
-  SlashCommandBuilder,
-  StringSelectMenuBuilder,
-  StringSelectMenuOptionBuilder,
-} from "@discordjs/builders";
-import { APIApplicationCommandInteraction } from "discord-api-types/v10";
+import { SlashCommandBuilder } from "@discordjs/builders";
+import { APIApplicationCommandAutocompleteInteraction, APIApplicationCommandInteraction } from "discord-api-types/v10";
 import { InteractionResponseType } from "discord-interactions";
 import type { Response } from "express";
 
 export const data = new SlashCommandBuilder()
   .setName("match")
-  .setDescription("試合の勝敗を登録します。");
+  .setDescription("試合の勝敗を登録します。")
+  .addStringOption((option) =>
+    option
+      .setName("先攻デッキ")
+      .setDescription("先攻のデッキタイプ")
+      .setAutocomplete(true),
+  )
+  .addStringOption((option) =>
+    option
+      .setName("後攻デッキ")
+      .setDescription("後攻のデッキタイプ")
+      .setAutocomplete(true),
+  );
 
 export function execute(
   _interaction: APIApplicationCommandInteraction,
   res: Response,
 ) {
-  const firstDeck = new StringSelectMenuBuilder()
-    .setCustomId("first_deck")
-    .setPlaceholder("先攻デッキ")
-    .addOptions(
-      new StringSelectMenuOptionBuilder()
-        .setLabel("リザードンex")
-        .setDescription("悪リザードンexを主軸としたデッキ")
-        .setValue("charizard-ex"),
-      new StringSelectMenuOptionBuilder()
-        .setLabel("ハバタクカミサーフゴー")
-        .setDescription("ハバタクカミとサーフゴーexを主軸としてデッキ")
-        .setValue("flutter-mane-gholdengo-ex"),
-    );
-  const secondDeck = new StringSelectMenuBuilder()
-    .setCustomId("first_deck")
-    .setPlaceholder("先攻デッキ")
-    .addOptions(
-      new StringSelectMenuOptionBuilder()
-        .setLabel("リザードンex")
-        .setDescription("悪リザードンexを主軸としたデッキ")
-        .setValue("charizard-ex"),
-      new StringSelectMenuOptionBuilder()
-        .setLabel("ハバタクカミサーフゴー")
-        .setDescription("ハバタクカミとサーフゴーexを主軸としてデッキ")
-        .setValue("flutter-mane-gholdengo-ex"),
-    );
-
-  const deckRow = new ActionRowBuilder().addComponents(firstDeck, secondDeck);
-
   res.send({
-    type: InteractionResponseType.MODAL,
+    type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
     data: {
-      components: [deckRow.toJSON()],
+      content: "登録完了しました！",
     },
   });
+}
+
+export async function autocomplete(
+  interaction: APIApplicationCommandAutocompleteInteraction,
+  res: Response,
+) {
+  console.log(JSON.stringify(interaction));
 }
