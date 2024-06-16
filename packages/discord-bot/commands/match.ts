@@ -14,6 +14,7 @@ import {
 const commandName = "match";
 const firstDeckOptionName = "first-deck";
 const secondDeckOptionName = "second-deck";
+const winnerOptionName = "winner";
 
 const choices = [
   {
@@ -45,7 +46,7 @@ export const data = new SlashCommandBuilder()
   )
   .addStringOption((option) =>
     option
-      .setName("winner")
+      .setName(winnerOptionName)
       .setDescription("勝者")
       .setRequired(true)
       .addChoices([
@@ -77,11 +78,14 @@ export function execute(
 
   let firstDeck: string | undefined;
   let secondDeck: string | undefined;
+  let winner: string | undefined;
   for (const { name, value } of options) {
     if (name === firstDeckOptionName && typeof value === "string") {
       firstDeck = value;
     } else if (name === secondDeckOptionName && typeof value === "string") {
       secondDeck = value;
+    } else if (name === winnerOptionName && typeof value === "string") {
+      winner = value;
     }
   }
   if (firstDeck == null) {
@@ -90,11 +94,14 @@ export function execute(
   if (secondDeck == null) {
     throw new Error("second-deck is null!");
   }
+  if (winner == null) {
+    throw new Error("winner is null!");
+  }
 
   res.send({
     type: InteractionResponseType.ChannelMessageWithSource,
     data: {
-      content: `登録完了 先攻：${firstDeck} 後攻：${secondDeck}`,
+      content: `登録完了 先攻：${firstDeck} 後攻：${secondDeck} 勝者：${winner}`,
     },
   });
 }
