@@ -94,3 +94,10 @@ resource "google_cloud_run_service_iam_policy" "main" {
   location    = google_cloud_run_service.main.location
   policy_data = data.google_iam_policy.cloud_run_main.policy_data
 }
+
+// Firestore database for the mxptc server
+resource "google_firestore_database" "main" {
+  name        = "${var.namespace_short}-main"
+  location_id = "asia-east1"
+  type        = "FIRESTORE_NATIVE"
+}
