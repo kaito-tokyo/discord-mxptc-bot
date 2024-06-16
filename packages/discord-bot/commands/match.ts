@@ -36,7 +36,7 @@ export function execute(
 
 export async function autocomplete(
   interaction: APIApplicationCommandAutocompleteInteraction,
-  res: Response,
+  _res: Response,
 ) {
   console.log(JSON.stringify(interaction));
 }
