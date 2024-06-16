@@ -56,7 +56,7 @@ export async function autocomplete(
   }
   const { name } = focusedOption;
 
-  if (["first-deck"].includes(name)) {
+  if (["first-deck", "second-deck"].includes(name)) {
     res.send({
       type: InteractionResponseType.ApplicationCommandAutocompleteResult,
       data: {
