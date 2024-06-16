@@ -33,7 +33,7 @@ export function execute(
   // const deckRow = new ActionRowBuilder().addComponents(firstDeck);
 
   res.send({
-    type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+    type: InteractionResponseType.MODAL,
     data: {
       content: "試合の勝敗を登録します。",
     },
