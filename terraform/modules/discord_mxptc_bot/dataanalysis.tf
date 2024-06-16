@@ -3,6 +3,11 @@ resource "google_bigquery_connection" "main" {
   cloud_resource {}
 }
 
+resource "google_bigquery_dataset" "main" {
+  dataset_id = "main"
+  location   = var.region
+}
+
 resource "google_bigquery_table" "matches" {
   description = "Matches between decks"
   dataset_id  = google_bigquery_dataset.main.dataset_id
@@ -28,7 +33,7 @@ resource "google_bigquery_table" "matches" {
   external_data_configuration {
     autodetect    = false
     source_format = "NEWLINE_DELIMITED_JSON"
-    connection_id = ""
+    connection_id = google_bigquery_connection.main.name
     source_uris = [
       "gs://${google_storage_bucket.matches.name}/*.json"
     ]
