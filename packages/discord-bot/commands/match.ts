@@ -42,6 +42,26 @@ export const data = new SlashCommandBuilder()
       .setDescription("後攻のデッキタイプ")
       .setRequired(true)
       .setAutocomplete(true),
+  )
+  .addStringOption((option) =>
+    option
+      .setName("winner")
+      .setDescription("勝者")
+      .setRequired(true)
+      .addChoices([
+        {
+          name: "先攻",
+          value: "first",
+        },
+        {
+          name: "後攻",
+          value: "second",
+        },
+        {
+          name: "引き分け",
+          value: "draw",
+        },
+      ]),
   );
 
 export function execute(
