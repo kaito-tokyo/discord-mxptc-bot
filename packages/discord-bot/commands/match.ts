@@ -4,8 +4,12 @@ import {
   APIChatInputApplicationCommandInteraction,
   APIApplicationCommandAutocompleteResponse,
   InteractionResponseType,
+  APIApplicationCommandOptionChoice,
 } from "discord-api-types/v10";
 import type { Response } from "express";
+
+import { Firestore } from "@google-cloud/firestore";
+
 import {
   MyApplicationCommandAutocompleteInteractionDataOption,
   MyApplicationCommandInteractionDataOption,
@@ -110,6 +114,26 @@ export async function autocomplete(
   interaction: APIApplicationCommandAutocompleteInteraction,
   res: Response,
 ) {
+  let choices: APIApplicationCommandOptionChoice<string>[] = [];
+  const firestore = new Firestore();
+  const documentRefs = await firestore.collection("decktypes").listDocuments();
+  const documentSnapshots = await firestore.getAll(...documentRefs);
+  for (const documentSnapshot of documentSnapshots) {
+    if (documentSnapshot.exists) {
+      const name = documentSnapshot.data()?.["name"];
+      if (name == null) {
+        continue;
+      }
+      choices = [
+        ...choices,
+        {
+          name,
+          value: documentSnapshot.id,
+        },
+      ];
+    }
+  }
+
   const options = interaction.data
     .options as MyApplicationCommandAutocompleteInteractionDataOption[];
 
