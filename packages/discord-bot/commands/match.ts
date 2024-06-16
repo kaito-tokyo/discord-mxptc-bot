@@ -11,13 +11,13 @@ export const data = new SlashCommandBuilder()
   .setDescription("試合の勝敗を登録します。")
   .addStringOption((option) =>
     option
-      .setName("先攻デッキ")
+      .setName("firstDeck")
       .setDescription("先攻のデッキタイプ")
       .setAutocomplete(true),
   )
   .addStringOption((option) =>
     option
-      .setName("後攻デッキ")
+      .setName("secondDeck")
       .setDescription("後攻のデッキタイプ")
       .setAutocomplete(true),
   );
