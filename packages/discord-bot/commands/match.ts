@@ -1,5 +1,8 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { APIApplicationCommandAutocompleteInteraction, APIApplicationCommandInteraction } from "discord-api-types/v10";
+import {
+  APIApplicationCommandAutocompleteInteraction,
+  APIApplicationCommandInteraction,
+} from "discord-api-types/v10";
 import { InteractionResponseType } from "discord-interactions";
 import type { Response } from "express";
 
