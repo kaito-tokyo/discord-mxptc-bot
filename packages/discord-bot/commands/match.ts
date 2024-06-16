@@ -119,38 +119,6 @@ export function execute(
     throw new Error("winner is null!");
   }
 
-  let winDecks: string[];
-  let loseDecks: string[];
-  if (winner === "first") {
-    winDecks = [firstDeck];
-    loseDecks = [secondDeck];
-  } else if (winner === "second") {
-    winDecks = [secondDeck];
-    loseDecks = [firstDeck];
-  } else if (winner === "draw") {
-    winDecks = [];
-    loseDecks = [firstDeck, secondDeck];
-  } else {
-    throw new Error(`Invalid winner: ${winner}`);
-  }
-
-  let optionalWinPlayers: (string | undefined)[];
-  let optionalLosePlayers: (string | undefined)[];
-  if (winner === "first") {
-    optionalWinPlayers = [firstPlayer].filter((e) => !!e);
-    optionalLosePlayers = [secondPlayer];
-  } else if (winner === "second") {
-    optionalWinPlayers = [secondPlayer];
-    optionalLosePlayers = [firstPlayer];
-  } else if (winner === "draw") {
-    optionalWinPlayers = [];
-    optionalLosePlayers = [firstPlayer, secondPlayer];
-  } else {
-    throw new Error(`Invalid winner: ${winner}`);
-  }
-  const winPlayers = compact(optionalWinPlayers);
-  const losePlayers = compact(optionalLosePlayers);
-
   const createdAt = new Date().toISOString();
   const match = {
     createdAt,
@@ -159,10 +127,6 @@ export function execute(
     winner,
     firstPlayer,
     secondPlayer,
-    winDecks,
-    loseDecks,
-    winPlayers,
-    losePlayers,
   };
   const filename = `${createdAt}.json`;
 
@@ -175,7 +139,7 @@ export function execute(
   res.send({
     type: InteractionResponseType.ChannelMessageWithSource,
     data: {
-      content: `登録完了 対戦ID：${createdAt} 勝利デッキ：${winDecks.join(",")} 敗北デッキ：${loseDecks.join(",")} 勝利プレイヤー：${winPlayers.join(",")} 敗北プレイヤー：${losePlayers.join(",")}`,
+      content: `登録完了 対戦ID：${createdAt}`,
     },
   });
 }
