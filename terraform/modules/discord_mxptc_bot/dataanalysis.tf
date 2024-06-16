@@ -47,26 +47,6 @@ resource "google_bigquery_table" "matches" {
       type = "STRING"
       mode = "NULLABLE"
     },
-    {
-      name = "winDecks"
-      type = "STRING"
-      mode = "REPEATED"
-    },
-    {
-      name = "loseDecks"
-      type = "STRING"
-      mode = "REPEATED"
-    },
-    {
-      name = "winPlayers"
-      type = "STRING"
-      mode = "REPEATED"
-    },
-    {
-      name = "losePlayers"
-      type = "STRING"
-      mode = "REPEATED"
-    },
   ])
   external_data_configuration {
     autodetect    = false
