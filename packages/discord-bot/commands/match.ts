@@ -14,6 +14,7 @@ import {
   MyApplicationCommandAutocompleteInteractionDataOption,
   MyApplicationCommandInteractionDataOption,
 } from "../types.js";
+import { firestoreDatabaseId } from "../constants.js";
 
 const commandName = "match";
 const firstDeckOptionName = "first-deck";
@@ -104,7 +105,9 @@ export async function autocomplete(
   res: Response,
 ) {
   let choices: APIApplicationCommandOptionChoice<string>[] = [];
-  const firestore = new Firestore();
+  const firestore = new Firestore({
+    databaseId: firestoreDatabaseId,
+  });
   const documentRefs = await firestore.collection("decktypes").listDocuments();
   const documentSnapshots = await firestore.getAll(...documentRefs);
   for (const documentSnapshot of documentSnapshots) {

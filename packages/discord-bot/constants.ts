@@ -33,3 +33,5 @@ export async function loadDiscordBotToken(): Promise<string> {
 
   return discordBotToken;
 }
+
+export const firestoreDatabaseId = "mpb-main";
