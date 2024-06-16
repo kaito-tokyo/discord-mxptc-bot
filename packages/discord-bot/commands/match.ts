@@ -74,7 +74,7 @@ export function execute(
   res.send({
     type: InteractionResponseType.ChannelMessageWithSource,
     data: {
-      content: `登録完了 先攻：${firstDeck} 後攻：${secondDeck}"`,
+      content: `登録完了 先攻：${firstDeck} 後攻：${secondDeck}`,
     },
   });
 }
