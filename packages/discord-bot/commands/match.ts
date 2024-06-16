@@ -1,4 +1,9 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
+import {
+  ActionRowBuilder,
+  SlashCommandBuilder,
+  StringSelectMenuBuilder,
+  StringSelectMenuOptionBuilder,
+} from "@discordjs/builders";
 import { APIApplicationCommandInteraction } from "discord-api-types/v10";
 import { InteractionResponseType } from "discord-interactions";
 import type { Response } from "express";
@@ -11,10 +16,27 @@ export function execute(
   _interaction: APIApplicationCommandInteraction,
   res: Response,
 ) {
+  const firstDeck = new StringSelectMenuBuilder()
+    .setCustomId("first_deck")
+    .setPlaceholder("先攻デッキ")
+    .addOptions(
+      new StringSelectMenuOptionBuilder()
+        .setLabel("リザードンex")
+        .setDescription("悪リザードンexを主軸としたデッキ")
+        .setValue("charizard-ex"),
+      new StringSelectMenuOptionBuilder()
+        .setLabel("ハバタクカミサーフゴー")
+        .setDescription("ハバタクカミとサーフゴーexを主軸としてデッキ")
+        .setValue("flutter-mane-gholdengo-ex"),
+    );
+
+  const deckRow = new ActionRowBuilder().addComponents(firstDeck);
+
   res.send({
-    type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+    type: InteractionResponseType.MODAL,
     data: {
-      content: "開発中です...",
+      content: "試合の勝敗を登録します。",
+      components: [deckRow.toJSON()],
     },
   });
 }
