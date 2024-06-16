@@ -35,7 +35,7 @@ export function execute(
   res.send({
     type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
     data: {
-      content: "試合の勝敗を登録します。"
+      content: "試合の勝敗を登録します。",
     },
   });
 }
