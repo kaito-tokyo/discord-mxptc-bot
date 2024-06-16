@@ -1,8 +1,9 @@
 import {
   APIApplicationCommandAutocompleteInteraction,
-  APIApplicationCommandInteraction,
+  APIChatInputApplicationCommandInteraction,
+  InteractionType,
 } from "discord-api-types/v10";
-import { InteractionType, verifyKeyMiddleware } from "discord-interactions";
+import { verifyKeyMiddleware } from "discord-interactions";
 import express from "express";
 
 import { loadDiscordPublicKey } from "./constants.js";
@@ -11,11 +12,11 @@ import * as match from "./commands/match.js";
 
 function isApplicationCommandInteraction(
   message: unknown,
-): message is APIApplicationCommandInteraction {
+): message is APIChatInputApplicationCommandInteraction {
   if (!message || typeof message !== "object" || !("type" in message)) {
     return false;
   }
-  return message.type === InteractionType.APPLICATION_COMMAND;
+  return message.type === InteractionType.ApplicationCommand;
 }
 
 function isApplicationCommandAutocompleteInteraction(
@@ -24,7 +25,7 @@ function isApplicationCommandAutocompleteInteraction(
   if (!message || typeof message !== "object" || !("type" in message)) {
     return false;
   }
-  return message.type === InteractionType.APPLICATION_COMMAND_AUTOCOMPLETE;
+  return message.type === InteractionType.ApplicationCommandAutocomplete;
 }
 
 registerGlobalCommands();
