@@ -120,17 +120,19 @@ export function execute(
     createdAt,
     myDeck: firstDeck,
     opponentDeck: secondDeck,
+    isFirst: true,
+    isVictory: winner === "first",
     myPlayer: firstPlayer,
-    first: true,
-    win: winner === "first",
+    opponentPlayer: secondPlayer,
   };
   const matchSecond = {
     createdAt,
-    myDeck: firstDeck,
-    opponentDeck: secondDeck,
-    myPlayer: firstPlayer,
-    first: false,
-    win: winner === "second",
+    myDeck: secondDeck,
+    opponentDeck: firstDeck,
+    isFirst: false,
+    isVictory: winner === "second",
+    myPlayer: secondPlayer,
+    opponentPlayer: firstPlayer,
   };
   const matchJsonl = [
     JSON.stringify(matchFirst),

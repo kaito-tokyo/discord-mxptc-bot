@@ -26,24 +26,28 @@ resource "google_bigquery_table" "matches" {
       type = "TIMESTAMP"
     },
     {
-      name = "firstDeck"
+      name = "myDeck"
       type = "STRING"
     },
     {
-      name = "secondDeck"
+      name = "opponentDeck"
       type = "STRING"
     },
     {
-      name = "winner"
-      type = "STRING"
+      name = "isFirst"
+      type = "BOOLEAN"
     },
     {
-      name = "firstPlayer"
+      name = "isVictory"
+      type = "BOOLEAN"
+    },
+    {
+      name = "myPlayer"
       type = "STRING"
       mode = "NULLABLE"
     },
     {
-      name = "secondPlayer"
+      name = "opponentPlayer"
       type = "STRING"
       mode = "NULLABLE"
     },
