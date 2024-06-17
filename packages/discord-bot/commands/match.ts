@@ -131,7 +131,7 @@ export function execute(
     myPlayer: firstPlayer,
     order: "second",
     win: winner === "second",
-  }
+  };
   const matchJsonl = [
     JSON.stringify(matchFirst),
     JSON.stringify(matchSecond),
@@ -139,10 +139,7 @@ export function execute(
   const filename = `${createdAt}.json`;
 
   const storage = new Storage();
-  storage
-    .bucket(loadMatchesBucketName())
-    .file(filename)
-    .save(matchJsonl);
+  storage.bucket(loadMatchesBucketName()).file(filename).save(matchJsonl);
 
   res.send({
     type: InteractionResponseType.ChannelMessageWithSource,
