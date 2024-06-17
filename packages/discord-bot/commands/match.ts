@@ -146,7 +146,7 @@ export function execute(
   res.send({
     type: InteractionResponseType.ChannelMessageWithSource,
     data: {
-      content: `登録完了 対戦ID：${createdAt}`,
+      content: `登録完了 ${matchJsonl}`,
     },
   });
 }
