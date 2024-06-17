@@ -121,7 +121,7 @@ export function execute(
     myDeck: firstDeck,
     opponentDeck: secondDeck,
     myPlayer: firstPlayer,
-    order: "first",
+    first: true,
     win: winner === "first",
   };
   const matchSecond = {
@@ -129,7 +129,7 @@ export function execute(
     myDeck: firstDeck,
     opponentDeck: secondDeck,
     myPlayer: firstPlayer,
-    order: "second",
+    first: false,
     win: winner === "second",
   };
   const matchJsonl = [
