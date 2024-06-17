@@ -116,21 +116,33 @@ export function execute(
   }
 
   const createdAt = new Date().toISOString();
-  const match = {
+  const matchFirst = {
     createdAt,
-    firstDeck,
-    secondDeck,
-    winner,
-    firstPlayer,
-    secondPlayer,
+    myDeck: firstDeck,
+    opponentDeck: secondDeck,
+    myPlayer: firstPlayer,
+    order: "first",
+    win: winner === "first",
   };
+  const matchSecond = {
+    createdAt,
+    myDeck: firstDeck,
+    opponentDeck: secondDeck,
+    myPlayer: firstPlayer,
+    order: "second",
+    win: winner === "second",
+  }
+  const matchJsonl = [
+    JSON.stringify(matchFirst),
+    JSON.stringify(matchSecond),
+  ].join("\n");
   const filename = `${createdAt}.json`;
 
   const storage = new Storage();
   storage
     .bucket(loadMatchesBucketName())
     .file(filename)
-    .save(JSON.stringify(match));
+    .save(matchJsonl);
 
   res.send({
     type: InteractionResponseType.ChannelMessageWithSource,
